@@ -1,0 +1,113 @@
+.notification-toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.notification-blocked-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.blocked-tooltip {
+  font-size: 1rem;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s, transform 0.2s;
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fbbf24;
+}
+
+.blocked-tooltip:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.blocked-tooltip:active {
+  transform: scale(0.95);
+}
+
+.notification-label {
+  font-size: 0.875rem;
+  color: white;
+  font-weight: 500;
+}
+
+.notification-toggle {
+  position: relative;
+  width: 50px;
+  height: 26px;
+  border: none;
+  border-radius: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.notification-toggle:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.notification-toggle.on {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.notification-toggle.off {
+  background: #cbd5e1;
+}
+
+.notification-toggle.disabled {
+  background: #e2e8f0;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.toggle-slider {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  will-change: transform;
+}
+
+.notification-toggle.on .toggle-slider {
+  transform: translateX(24px);
+}
+
+.notification-toggle.off .toggle-slider {
+  transform: translateX(0);
+}
+
+.notification-toggle.disabled .toggle-slider {
+  transform: translateX(0);
+}
+
+.notification-toggle:active:not(:disabled) .toggle-slider {
+  width: 22px;
+}
+
+.notification-toggle:hover:not(:disabled):not(.disabled) {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.notification-toggle.on:hover:not(:disabled) {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+.notification-toggle.off:hover:not(:disabled) {
+  background: #94a3b8;
+}
+

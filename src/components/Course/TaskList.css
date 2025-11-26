@@ -1,0 +1,29 @@
+.task-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.task-list > div[style*="transform"] {
+  cursor: grabbing;
+}
+
+.task-list > div {
+  cursor: grab;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-sm);
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .task-list {
+    grid-template-columns: 1fr;
+  }
+}
+
