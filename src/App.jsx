@@ -5,6 +5,7 @@ import { ToastProvider, useToast } from './contexts/ToastContext';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import ForgotPassword from './components/Auth/ForgotPassword';
+import VerifyEmail from './components/Auth/VerifyEmail';
 import Dashboard from './components/Dashboard/Dashboard';
 import CourseView from './components/Course/CourseView';
 import LoadingSpinner from './components/Common/LoadingSpinner';
@@ -16,7 +17,15 @@ const PrivateRoute = ({ children }) => {
     return <LoadingSpinner />;
   }
 
-  return currentUser ? children : <Navigate to="/login" />;
+  if (!currentUser) {
+    return <Navigate to="/login" />;
+  }
+
+  if (!currentUser.emailVerified) {
+    return <Navigate to="/verify-email" />;
+  }
+
+  return children;
 };
 
 const PublicRoute = ({ children }) => {
@@ -26,7 +35,11 @@ const PublicRoute = ({ children }) => {
     return <LoadingSpinner />;
   }
 
-  return currentUser ? <Navigate to="/dashboard" /> : children;
+  if (currentUser && currentUser.emailVerified) {
+    return <Navigate to="/dashboard" />;
+  }
+
+  return children;
 };
 
 const ToastListener = () => {
@@ -70,6 +83,7 @@ const AppRoutes = () => {
             <ForgotPassword />
           </PublicRoute>
         } />
+        <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/dashboard" element={
           <PrivateRoute>
             <Dashboard />

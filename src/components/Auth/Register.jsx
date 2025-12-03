@@ -50,7 +50,7 @@ const Register = () => {
     if (result.success) {
       setSuccess(true);
       setTimeout(() => {
-        navigate('/dashboard');
+        navigate('/verify-email');
       }, 2000);
     } else {
       setError(result.error || 'Failed to create account. Please try again.');

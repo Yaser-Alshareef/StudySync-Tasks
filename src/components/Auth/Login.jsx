@@ -19,7 +19,11 @@ const Login = () => {
     const result = await loginUser(email, password);
 
     if (result.success) {
-      navigate('/dashboard');
+      if (result.needsVerification) {
+        navigate('/verify-email');
+      } else {
+        navigate('/dashboard');
+      }
     } else {
       setError(result.error || 'Failed to login. Please check your credentials.');
     }
